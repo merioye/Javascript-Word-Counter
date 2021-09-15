@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Word Counter</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            #container{
+                width: 80%;
+                height: 80vh;
+                margin: auto;
+                /* border: 1px solid red; */
+            }
+            .heading{
+                background-color: lightblue;
+                text-align: center;
+                padding: 20px;
+                font-size: 3rem;
+                height: 13%;
+
+            }
+            textarea{
+                width: 100%;
+                height: 70%;
+                font-size: 1.5rem;
+                overflow: auto;
+                padding: 20px;
+            }
+
+            @media screen and (max-width:400px){
+                #container{
+                    width: 90%;
+                    
+                }
+                .heading{
+                    font-size: 1.5rem;
+                    overflow: auto;
+                    height: 20%;
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id='container'>
+            <h1 class='heading'>Word Counter</h1>
+            <textarea>
+
+            </textarea>
+            <h1 id='heading2' class='heading'></h1>
+        </div>
+        <script>
+            let text = document.querySelector('textarea');
+            let count = document.getElementById('heading2');
+            const calWord = (e)=>{
+                let chars = text.value.trim().length;
+                let value = text.value.split(' ');
+                let newVal = value.filter((val)=>{
+                    if(val!=' ' || val!='\n'){
+                        return val;
+                    }
+                }).filter((val)=>{
+                    if(val!='\n'){
+                        return val;
+                    }
+                }).length;
+                count.textContent = newVal+' Words and '+chars+' characters';
+
+            }
+            text.addEventListener('input', calWord);
+        </script>
+    </body>
+</html>
